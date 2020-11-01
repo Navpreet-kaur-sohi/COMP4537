@@ -1,0 +1,98 @@
+
+body {
+    background-color: darkturquoise;
+}
+
+.game-board {
+    display: grid;
+    margin-top:100px;
+    grid-template-rows: repeat(5,50px);
+    grid-template-columns: repeat(5,50px);
+    border-style: solid;
+    border-color: grey;
+    border-width: 10px;
+    padding: 0px; 
+    margin: 0 auto;
+}
+.levelTwo{
+    grid-template-rows: repeat(6,50px);
+    grid-template-columns: repeat(6,50px);
+}
+
+.rotation {
+    /* transition-property: transform; */
+    transform : rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transition-duration: 1s;
+    overflow: hidden;
+}
+
+.box {
+    margin:2px;
+    transition: transform 0.3s;
+    transform-style: preserve-3d;
+}
+
+.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.front{
+    background-color: black;
+}
+.front:hover{
+    background-color:  #ddd;
+}
+
+.back{
+    background-color: red;
+    transform: rotateY( 180deg );
+}
+
+.back, .front{
+    position: absolute;
+    backface-visibility: hidden;
+    width:100%;
+    height:100%;
+}
+
+#scoreBoard {
+    display:flex;
+    justify-content: center;
+}
+#scoreBoard div {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight:bold;
+    display: flex;
+    width: 20%;
+    background-color: white;
+    padding: 0.5%
+
+}
+#scoreBoard div div{
+    font-size:85%;
+    width:50%;
+    text-align: center;
+}
+
+
+#buttons{
+    margin-top:5%;
+    display:flex;
+    justify-content: center;
+}
+#buttons button{
+    background-color: #e7e7e7; 
+    color: black;
+    font-size: 16px;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+#buttons button:hover{
+    background-color: grey; 
+    transition: 0.3s;
+}
+

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>doc</title>
+    <link href='css/main.css' rel='stylesheet' /> 
+    <link href='css/block.css' rel='stylesheet' />
+    <script src="js/game.js" defer></script>
+    <script src="js/leaderBoard.js" defer ></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <link href='css/leaderBoard.css' rel='stylesheet' />
+    
+</head>
+
+<body>
+    <div id = "container">
+    <div id='scoreBoard'>
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div>
+                    Score &nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div id='score'>
+                    0
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div>Level &nbsp;&nbsp;&nbsp; </div></div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div id='level'>1</div>
+                </div>
+        </div>
+    </div>
+    
+    
+    <div id="gameScene">
+        <div class="game-board" id="game-board"></div>
+    </div>
+    <center>
+    
+        
+    <div id="buttons">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+        <button class ="btn" onclick="start()">Start</button>
+    </div>
+    
+    <div class="col-md-4 col-sm-6 col-xs-12">
+        <button class ="btn" onclick="restart()">Restart</button></div>
+        <div class="col-md-4 col-sm-6 col-xs-12"> <button class ="btn" onclick="terminate()">Terminate</button></div>
+    
+</div>
+    </div>
+</center>
+    <div class = "form" id = "cred">
+        
+    </div>
+    <div id = "data">
+
+    </div>
+   
+    
+    
+</div>
+</body>
+</html>

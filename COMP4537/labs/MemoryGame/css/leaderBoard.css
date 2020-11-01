@@ -1,0 +1,36 @@
+.leaderBoard {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+.leaderBoard td, .leaderBoard th {
+border: 1px solid #ddd;
+padding: 8px;
+}
+
+.leaderBoard tr:nth-child(even){background-color: #f2f2f2;}
+
+.leaderBoard tr:hover {background-color: #ddd;}
+
+.leaderBoard th {
+padding-top: 12px;
+padding-bottom: 12px;
+text-align: left;
+background-color: #4CAF50;
+color: white;
+}
+#newgame {
+    background-color: #e7e7e7; 
+    color: black;
+    font-size: 16px;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+#newgame:hover{
+    background-color: grey;
+    transition: 0.3s;
+}
