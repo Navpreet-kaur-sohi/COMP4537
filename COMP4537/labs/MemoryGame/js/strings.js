@@ -1,18 +1,14 @@
-const score = "Score"
-document.getElementById("scoreText").innerHTML = score;
-const scoreNumber ="0"
-document.getElementById("score").innerHTML = scoreNumber;
-
-const level = "Level"
-document.getElementById("levelText").innerHTML = level;
-const levelNumber = "1"
-document.getElementById("level").innerHTML = levelNumber;
-
-const startBtn = "Start"
-document.getElementById("startBtn").innerHTML = startBtn;
-
-const restartBtn = "Restart"
-document.getElementById("restartBtn").innerHTML = restartBtn;
-
-const terminateBtn = "Terminate"
-document.getElementById("terminateBtn").innerHTML = terminateBtn;
+const a = "Score"
+const b ="0"
+const c = "Level"
+const d = "1"
+const e = "Start"
+const f = "Restart"
+const g = "Terminate"
+document.getElementById("scoreText").innerHTML = a;
+document.getElementById("score").innerHTML = b;
+document.getElementById("levelText").innerHTML = c;
+document.getElementById("level").innerHTML = d;
+document.getElementById("startBtn").innerHTML = e;
+document.getElementById("restartBtn").innerHTML = f;
+document.getElementById("terminateBtn").innerHTML = g;

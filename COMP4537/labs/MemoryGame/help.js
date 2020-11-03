@@ -17,16 +17,7 @@ const db = mysql.createConnection({
 /**
  * creating a server to respond to AJAX call
  */
-http.createServer(function(req,response){
-  let q = url.parse(req.url, true);
-  response.writeHead(200, {"Content-Type": "text/html", "Access-Control-Allow-Origin": "*"});
-  let name = q.query["name"];
-  let score = q.query["score"];
-  connect();
-  insert_data(name,score);
-  read_data().then(result=> { response.end(result) })
-  
-}).listen(process.env.PORT);
+
 
 /**
  * connecting to database
@@ -48,13 +39,14 @@ function connect(){
  */
 function insert_data(name,score){
   var sql = "INSERT INTO score(name, score) values ('"+name+"',"+score+")";
-    db.query(sql, function (err, result) {
+//var sql = "SELECT * FROM score;"
+ db.query(sql, function (err, result) {
     if (err) throw err;
-    console.log("1 record inserted");
+    console.log(result);
     
   });
 }
-
+insert_data("ffd",22);
 /**
  * reading data from databse
  */
