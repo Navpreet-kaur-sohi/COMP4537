@@ -223,7 +223,7 @@ function sound(src) {
  * playing the sound.
  */
 function nextLevelSound(){
-    let mySound = new sound("C:/Users/USER/Documents/COMP4537/mg/source/audio/levelupsound.mp3");
+    let mySound = new sound("source/audio/levelupsound.mp3");
     mySound.play();
 }
 
