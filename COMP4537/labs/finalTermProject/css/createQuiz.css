@@ -1,0 +1,20 @@
+canvas {
+  
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+  }
+
+  #container {
+    position: absolute;
+  }
+  #container canvas, #overlay {
+    position: absolute;
+  }
+
+  #overlay{
+    background-color: white;
+    padding: 4%;
+    margin-left: 15%;
+  }
