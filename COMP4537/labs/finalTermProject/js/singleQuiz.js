@@ -1,9 +1,15 @@
+/**
+ * {Description : getting thhe token}
+ */
 function getToken() {
   return "JWT" + " " + localStorage.getItem("token");
 }
+
+//storing token
 const token = getToken()
+
+//userId
 const userId = localStorage.getItem("id");
-  
   
   (function(){
     function buildQuiz(){

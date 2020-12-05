@@ -1,15 +1,41 @@
+/**
+ * Check if user is still logged in
+ */
+
 if(!localStorage.getItem("token") || !localStorage.getItem("userId") ){
     alert("Logged out");
     window.location.href = "../views/login.html";
 }
+
+/**
+ * garbbing user token
+ */
 const token = `JWT ${localStorage.getItem("token")}`
+
+/**
+ * grabbing user id
+ */
 const userId = localStorage.getItem("userId");
+
+/**
+ * url params
+ */
 const urlParams = new URLSearchParams(window.location.search);
+
+/**
+ * quiz id
+ */
 const quizId = urlParams.get('quiz');
 
-
+/**
+ * container holding question
+ */
 const container = $("#qus_holder");
 
+/**
+ * populate
+ * @param {*} quiz 
+ */
 let populateMyQuiz = (quiz)=>{
     $("#quizName").val(quiz.title);
     $("#quizDesc").val(quiz.description);
@@ -23,6 +49,10 @@ let populateMyQuiz = (quiz)=>{
     
 }
 
+/**
+ * populating questions
+ * @param {*} questions 
+ */
 let populateQuestions = (questions)=> {
     questions.forEach((question)=>{
         let answers = JSON.parse(question.answers);
