@@ -1,106 +1,92 @@
 
-  (function(){
-    function buildQuiz(){
-      // variable to store the HTML output
-      const output = [];
-  
-      // for each question...
-      myQuestions.forEach(
-        (currentQuestion, questionNumber) => {
-  
-          // variable to store the list of possible answers
-          const answers = [];
-  
-          // and for each available answer...
-          for(letter in currentQuestion.answers){
-  
-            // ...add an HTML radio button
-            answers.push(
-              `<label>
-                <input  name="question${questionNumber}" value="${letter} :${currentQuestion.answers[letter]}">
-              </label>`
-            );
-          }
-  
-          // add this question and its answers to the output
-          output.push(
-            `<input class="question" value ="${currentQuestion.question}" >
-            <div class="answers"> ${answers.join('')} </div>`
-          );
-        }
-      );
-  
-      quizContainer.innerHTML = output.join('');
+function getToken() {
+  return "JWT" + " " + localStorage.getItem("token");
+}
+getInfo = () => {
+    let name = $("#name");
+    let email = $("#email");
+    let pass = $("#pass");
+    let id = localStorage.getItem("id");
+    const data = {
+        id:id,
     }
-  
-    // function showResults(){
-  
-    //   // gather answer containers from our quiz
-    //   const answerContainers = quizContainer.querySelectorAll('.answers');
-  
-    //   // keep track of user's answers
-    //   let numCorrect = 0;
-  
-    //   // for each question...
-    //   myQuestions.forEach( (currentQuestion, questionNumber) => {
-  
-    //     // find selected answer
-    //     const answerContainer = answerContainers[questionNumber];
-    //     const selector = `input[name=question${questionNumber}]:checked`;
-    //     const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-  
-    //     // if answer is correct
-    //     if(userAnswer === currentQuestion.correctAnswer){
-    //       // add to the number of correct answers
-    //       numCorrect++;
-  
-    //       // color the answers green
-    //       answerContainers[questionNumber].style.color = 'lightgreen';
-    //     }
-    //     // if answer is wrong or blank
-    //     else{
-    //       // color the answers red
-    //       answerContainers[questionNumber].style.color = 'red';
-    //     }
-    //   });
-  
-    //   // show number of correct answers out of total
-    //   resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
-    // }
-  
-    const quizContainer = document.getElementById('quiz');
-    const submitButton = document.getElementById('submit');
-    const myQuestions = [
-      {
-        question: "Who invented JavaScript?",
-        answers: {
-          a: "Hello",
-          b: "Sheryl Sandberg",
-          c: "Brendan Eich",
-          d: "Hello"
-        }
-      },
-      {
-        question: "Which one of these is a JavaScript package manager?",
-        answers: {
-          a: "Node.js",
-          b: "TypeScript",
-          c: "npm",
-          d: "hello"
-        }
-      },
-      {
-        question: "Which tool can you use to ensure code quality?",
-        answers: {
-          a: "Angular",
-          b: "jQuery",
-          c: "RequireJS",
-          d: "ESLint"
-        }
-      }
-    ];
-  
-    // Kick things off
-    buildQuiz();
-  
-  })();
+    
+    console.log("get data",data);
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization",getToken())
+
+    let requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+    };
+    fetch("https://agile-tundra-39359.herokuapp.com/api/v1/user/"+id, requestOptions)
+        .then(response => response.json())
+        .then(data=>{console.log(data)
+        name.val(data.name)
+        email.val(data.email)
+        pass.val(data.userPassword)
+        })
+        
+        .catch(error => console.log('error', error));
+};
+getInfo();
+
+updateinfo=()=>{
+  let id = localStorage.getItem("id");
+  let name = $("#name").val()
+  let email = $("#email").val()
+  let pass = $("#pass").val()
+    const data = {
+      name : name,
+      email : email,
+      password:pass
+  }
+
+console.log(data);
+let myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Authorization",getToken())
+
+let requestOptions = {
+method: 'PUT',
+body:JSON.stringify(data),
+headers: myHeaders,
+redirect: 'follow'
+};
+fetch("https://agile-tundra-39359.herokuapp.com/api/v1/user/"+id, requestOptions)
+    .then(response => response.json())
+    .then(result=>console.log(result))
+    .catch(error => console.log('error', error));
+  getInfo();
+
+} 
+
+deleteprofile = () => {
+  console.log("here")
+  let id = localStorage.getItem("id");
+  let myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Authorization",getToken())
+
+let requestOptions = {
+method: 'DELETE',
+headers: myHeaders,
+redirect: 'follow'
+};
+fetch("https://agile-tundra-39359.herokuapp.com/api/v1/user/"+id, requestOptions)
+    .then(response => {response.json()
+    window.location.href = "../views/login.html"}
+    )
+    .catch(error => console.log('error', error));
+
+}
+
+launchCreate = () => {
+  window.location.href = "../views/createQuiz.html"
+}
+
+getUserQuiz = ()=>{
+ window.location.href = "../views/myquiz.html"
+}

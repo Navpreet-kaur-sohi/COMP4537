@@ -101,8 +101,29 @@
         }
       }
     ];
+
+
   
     // Kick things off
     buildQuiz();
   
   })();
+
+  var ct = 1;
+  function new_link(length)
+  {
+      for(var i = 1;i<length;i++){
+      ct++;
+      var div1 = document.createElement('div');
+      div1.id = ct;
+     // <div class="col mb-4"><div class="card"><div class="card-body"><h5 class="card-title">Card title</h5><a href="#" class="btn btn-primary">Go somewhere</a></div></div></div>
+
+      // link to delete extended form elements
+      //div1.innerHTML = document.getElementById('1').innerHTML ;
+      div1.innerHTML = ('<div class="col mb-4"><div class="card"><div class="card-body"><h5 class="card-title">Card title</h5><a href="#" class="btn btn-primary">Go somewhere</a></div></div></div>');
+      document.getElementById('1').appendChild(div1);
+      }
+  }
+  new_link(5);
+
+  

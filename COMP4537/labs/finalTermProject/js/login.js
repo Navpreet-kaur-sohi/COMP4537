@@ -39,7 +39,7 @@ signUpconfirm= () => {
 	
 	
 
-	fetch("http://localhost:4000/api/v1/user/create", requestOptions)
+	fetch("https://agile-tundra-39359.herokuapp.com/api/v1/user/create", requestOptions)
 	.then((response) => {
 		if (response.status == 409) throw response.json()
 		window.location.href = "../views/login.html";
@@ -78,13 +78,19 @@ signInconfirm = () => {
     headers: myHeaders,
     redirect: 'follow'
     };
-    fetch("http://localhost:4000/api/v1/login", requestOptions)
+    fetch("https://agile-tundra-39359.herokuapp.com/api/v1/login", requestOptions)
         .then(response => response.json())
         .then((result) => {
             console.log("Hello",result);
             localStorage.setItem("token", result.token);
             localStorage.setItem("id", result.id);
-            //window.location.href = "../views/Profile.html";
+			//window.location.href = "../views/Profile.html";
+			if(localStorage.getItem("token") !== null)
+            {
+                console.log("IN IF");
+				window.location.href = "../views/Profile.html";
+				
+            }
         })
         .catch(error => console.log('error', error));
 };

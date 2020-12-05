@@ -18,18 +18,18 @@
 
     <form>
         <label>Quiz Name</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" id="name">
         <label>Quiz Description</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" id="desc">
         <label>PLease enter the labels</label>
         <p>A : </p>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" id = "a1">
         <p>B : </p>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" id = "a2">
         <p>C : </p>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" id= "a3">
         <p>D : </p>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" id="a4">
         <br/><br/>
         <div id="qus_holder">
             <div class = "Question" id="1">
@@ -63,7 +63,7 @@
         </div>
 
         <button class="add btn btn-primary" type="button" onclick="new_link()" >Add</button>
-        <button type="submit"  class="btn btn-primary">Submit</button>
+        <button type="button"  class="btn btn-primary" onclick="postQuiz()">Submit</button>
     
     </div>
     </form>
@@ -98,6 +98,7 @@
         </script>
     <!-- <script src="../js/createQuiz.js"></script> -->
     <script src="../js/createQuiz.js"></script>
+    <script src="../js/postQuiz.js"></script>
 </div>
 </div>
 </body>
