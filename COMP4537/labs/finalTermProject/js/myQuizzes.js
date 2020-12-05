@@ -1,5 +1,3 @@
-
-
 function getToken() {
     return "JWT" + " " + localStorage.getItem("token");
   }
@@ -13,18 +11,17 @@ let populateMyQuizzes = (quizzes)=>{
     quizzes.forEach((quiz)=>{
         let quizView = $(`<div class="col mb-4">
         <div class="card">
-        <div class="card-body" id="${quiz.id}">
+        <div class="card-body" id="quiz${quiz.id}">
         <h5 class="card-title">${quiz.title}</h5>
         <h5 class="card-title">${quiz.description}</h5>
         <h5 class="card-title">Attempts: ${quiz.attempts}</h5>
         <a href="#" class="btn btn-primary check" >View this quiz</a>
-        <a href="#" class="btn btn-primary check" onclick = "deleteQuiz(${quiz.id})" >delete</a>
         </div></div></div>`);
-        // quizView.click(()=>{
-        //     console.log("Quiz", quiz.id, "clicked!");
-        //     //window.location.href = `../views/editQuiz.html/?quiz=${quiz.id}`
-        // })
-         container.append(quizView);
+        quizView.click(()=>{
+            console.log("Quiz", quiz.id, "clicked!");
+            window.location.href = `../views/editQuiz.html/?quiz=${quiz.id}`
+        })
+        container.append(quizView);
     })
 }
 
@@ -51,21 +48,3 @@ fetch(`https://agile-tundra-39359.herokuapp.com/api/v1/user/${userId}/quizzes`, 
 })
 .catch(error => error.then(msg => alert(msg.message)));
 
-deleteQuiz = (id) => {
-    let requestOptions = {
-        method: 'DELETE',
-        headers: myHeaders,
-        redirect: 'follow'
-        };
-        fetch(`https://agile-tundra-39359.herokuapp.com/api/v1/quiz/${id}`, requestOptions)
-        .then((response) => {
-            console.log(response.status);
-            if(response.status != 200) throw response.json();
-            window.location.href="../views/Profile.html"
-            return response.json()
-        })
-        .then((result) => {
-            console.log(result);
-        })
-        .catch(error => error.then(msg => alert(msg.message)));
-}
