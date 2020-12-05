@@ -1,4 +1,3 @@
-let submitBtn = $("#submit");
 
   (function(){
     function buildQuiz(){
@@ -18,7 +17,7 @@ let submitBtn = $("#submit");
             // ...add an HTML radio button
             answers.push(
               `<label>
-                <input type="radio" id = "${letter}" name="question${questionNumber}" value="${letter}">
+                <input type="radio" name="question${questionNumber}" value="${letter}">
                 ${letter} :
                 ${currentQuestion.answers[letter]}
               </label>`
@@ -36,50 +35,43 @@ let submitBtn = $("#submit");
       quizContainer.innerHTML = output.join('');
     }
   
-    function showResults(){
-      console.log("inside")
-      // gather answer containers from our quiz
-      const answerContainers = quizContainer.querySelectorAll('.answers');
+    // function showResults(){
   
-      // keep track of user's answers
-      let affinityA = 0;
-      let affinityB = 0;
-      let affinityC = 0;
-      let affinityD = 0;
+    //   // gather answer containers from our quiz
+    //   const answerContainers = quizContainer.querySelectorAll('.answers');
   
-      // for each question...
-      myQuestions.forEach( (currentQuestion, questionNumber) => {
+    //   // keep track of user's answers
+    //   let numCorrect = 0;
   
-        // find selected answer
-        const answerContainer = answerContainers[questionNumber];
-        const selector = `input[name=question${questionNumber}]:checked`;
-        const userAnswer = (answerContainer.querySelector(selector) || {}).id;
+    //   // for each question...
+    //   myQuestions.forEach( (currentQuestion, questionNumber) => {
   
-        // if answer is correct
-        if(userAnswer === 'a'){
-          // add to the number of correct answers
-          affinityA++;
+    //     // find selected answer
+    //     const answerContainer = answerContainers[questionNumber];
+    //     const selector = `input[name=question${questionNumber}]:checked`;
+    //     const userAnswer = (answerContainer.querySelector(selector) || {}).value;
   
-         console.log(affinityA);
-         
-        }
-        // if answer is wrong or blank
-        else{
-          // color the answers red
-          console.log(affinityA);
-          answerContainers[questionNumber].style.color = 'red';
-        }
-      });
+    //     // if answer is correct
+    //     if(userAnswer === currentQuestion.correctAnswer){
+    //       // add to the number of correct answers
+    //       numCorrect++;
   
-     
-      
-    }
+    //       // color the answers green
+    //       answerContainers[questionNumber].style.color = 'lightgreen';
+    //     }
+    //     // if answer is wrong or blank
+    //     else{
+    //       // color the answers red
+    //       answerContainers[questionNumber].style.color = 'red';
+    //     }
+    //   });
+  
+    //   // show number of correct answers out of total
+    //   resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+    // }
   
     const quizContainer = document.getElementById('quiz');
     const submitButton = document.getElementById('submit');
-    submitButton.addEventListener('click', () => {
-      showResults();
-    });
     const myQuestions = [
       {
         question: "Who invented JavaScript?",
@@ -112,6 +104,5 @@ let submitBtn = $("#submit");
   
     // Kick things off
     buildQuiz();
-   
   
   })();

@@ -18,24 +18,26 @@
 
     <form>
         <label>Quiz Name</label>
-        <input id="quizName" type="text" class="form-control" >
+        <input type="text" class="form-control" >
         <label>Quiz Description</label>
-        <input id="quizDesc" type="text" class="form-control" >
+        <input type="text" class="form-control" >
         <label>PLease enter the labels</label>
         <p>A : </p>
-        <input id="affinityA" type="text" class="form-control" >
+        <input type="text" class="form-control" >
         <p>B : </p>
-        <input id="affinityB" type="text" class="form-control" >
+        <input type="text" class="form-control" >
         <p>C : </p>
-        <input id="affinityC" type="text" class="form-control" >
+        <input type="text" class="form-control" >
         <p>D : </p>
-        <input id="affinityD" type="text" class="form-control" >
+        <input type="text" class="form-control" >
         <br/><br/>
         <div id="qus_holder">
             <div class = "Question" id="1">
                     <p>Enter the quetion</p>
                     <div class="form-group row">
                         <label for="exampleInputEmail1">Question</label>
+                        <!-- <label for="cb">Upload Image</label>
+                        <input id="cb1" type="checkbox"> -->
                         <input type="text" class="form-control"  aria-describedby="emailHelp">
                         <input type="file" accept="image/*" >
                         
@@ -61,7 +63,7 @@
         </div>
 
         <button class="add btn btn-primary" type="button" onclick="new_link()" >Add</button>
-        <button type="submit"  class="btn btn-primary" id="formSubmit">Submit</button>
+        <button type="submit"  class="btn btn-primary">Submit</button>
     
     </div>
     </form>
@@ -69,11 +71,33 @@
         /*
         This script is identical to the above JavaScript function.
         */
-        
+        var ct = 1;
+        var height = 1150;
+        function new_link()
+        {
+            ct++;
+            height = height+500;
+            console.log(ct)
+            var div1 = document.createElement('div');
+            div1.id = ct;
+            // link to delete extended form elements
+            var delLink = '<div style="text-align:right;margin-right:65px"><a href="javascript:delIt('+ ct +')">Del</a></div>';
+            div1.innerHTML = document.getElementById('1').innerHTML + delLink;
+            document.getElementById('qus_holder').appendChild(div1);
+            console.log(height +"px");
+            document.getElementById('c').style.height = height +"px";
+        }
+        // function to delete the newly added set of elements
+        function delIt(eleId)
+        {
+            d = document;
+            var ele = d.getElementById(eleId);
+            var parentEle = d.getElementById('qus_holder');
+            parentEle.removeChild(ele);
+        }
         </script>
     <!-- <script src="../js/createQuiz.js"></script> -->
     <script src="../js/createQuiz.js"></script>
-    <script src="../js/postQuiz.js"></script>
 </div>
 </div>
 </body>
