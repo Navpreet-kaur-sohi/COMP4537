@@ -1,9 +1,14 @@
-
-
+/**
+ * getting token
+ */
 function getToken() {
     return "JWT" + " " + localStorage.getItem("token");
   }
+
+// storing token
 const token = getToken()
+
+// user id
 const userId = localStorage.getItem("id");
 
 let myHeaders = new Headers();
@@ -16,12 +21,20 @@ headers: myHeaders,
 redirect: 'follow'
 };
 
+// my quiz element
 const container = $("#myQuizzes");
-{/* <div class="col mb-4"><div class="card"><div class="card-body"><h5 class="card-title">Card title</h5><a href="#" class="btn btn-primary">Go somewhere</a></div></div></div> */}
 
+/**
+ * {Description : populating the container with respective quizzes}
+ * @param {*} quizzes 
+ */
 let populateMyQuizzes = (quizzes)=>{
     container.empty()
+
+    //iterating through quizzes
     quizzes.forEach((quiz)=>{
+
+        // creating the quiz
         let quizView = $(`<div class="col mb-4">
         <div class="card">
         <div class="card-body" id="${quiz.id}">
@@ -34,6 +47,8 @@ let populateMyQuizzes = (quizzes)=>{
             localStorage.setItem("quiz", JSON.stringify(quiz));
             window.location.href = `../views/SingleQuiz.html`
         })
+        
+        //appending to container
          container.append(quizView);
     })
 }

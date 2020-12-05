@@ -1,18 +1,28 @@
+/**
+ * taking buttons from frontend
+ */
+
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
-//const signUpconfirm = document.getElementById('signupconfirm');
-//const signUpconfirm = $(docu$('#signupconfirm');
-// const signInconfirm = document.getElementById('signinconfirm');
 const container = document.getElementById('container');
 
+/**
+ * event listener for signup animation
+ */
 signUpButton.addEventListener('click', () => {
 	container.classList.add("right-panel-active");
 });
 
+/**
+ * listener for sign in animation
+ */
 signInButton.addEventListener('click', () => {
 	container.classList.remove("right-panel-active");
 });
 
+/**
+ * creating a user
+ */
 signUpconfirm= () => {
 	console.log("in this function")
 	const name = $('#SignupName').val();
@@ -37,7 +47,7 @@ signUpconfirm= () => {
 	};
 	
 	
-
+	//making a fetch req
 	fetch("https://agile-tundra-39359.herokuapp.com/api/v1/user/create", requestOptions)
 	.then((response) => {
 		if (response.status == 409) throw response.json()
@@ -45,20 +55,12 @@ signUpconfirm= () => {
 		return response.json()
 
 	})
-	// .then((result) => {
-	// 	localStorage.setItem("id", result.id);
-	// 	fetch("http://localhost:4000/api/v1/login", requestOptions2)
-	// 	.then((result) => {
-	// 		console.log(result);
-	// 		localStorage.setItem("token", result.token);
-	// 	//	window.location.href = "../views/Profile.html";
-	// 	})
-	// 	.catch(error => console.log('error', error));
-	// })
-
 	.catch(error => error.then(msg => alert(msg.message)));
 };
 
+/**
+ * signin in user
+ */
 signInconfirm = () => {
 	const name = $('#SigninName').val();
 	const password = $('#Signinpassword').val();
@@ -83,7 +85,6 @@ signInconfirm = () => {
             console.log("Hello",result);
             localStorage.setItem("token", result.token);
             localStorage.setItem("id", result.id);
-			//window.location.href = "../views/Profile.html";
 			if(localStorage.getItem("token") !== null)
             {
                 console.log("IN IF");

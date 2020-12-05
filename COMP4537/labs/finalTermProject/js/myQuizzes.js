@@ -1,12 +1,25 @@
+/**
+ * get token 
+ */
 function getToken() {
     return "JWT" + " " + localStorage.getItem("token");
   }
+ 
+  /**
+   * declaring variables
+   */
 const token = getToken()
+
+//user id
 const userId = localStorage.getItem("id");
 
+// container for quiz
 const container = $("#myQuizzes");
-{/* <div class="col mb-4"><div class="card"><div class="card-body"><h5 class="card-title">Card title</h5><a href="#" class="btn btn-primary">Go somewhere</a></div></div></div> */}
 
+/**
+ * populate the quizzes
+ * @param {*} quizzes 
+ */
 let populateMyQuizzes = (quizzes)=>{
     quizzes.forEach((quiz)=>{
         let quizView = $(`<div class="col mb-4">
@@ -17,24 +30,23 @@ let populateMyQuizzes = (quizzes)=>{
         <h5 class="card-title">Attempts: ${quiz.attempts}</h5>
         <a href="#" class="btn btn-primary check" >View this quiz</a>
         </div></div></div>`);
-        quizView.click(()=>{
-            console.log("Quiz", quiz.id, "clicked!");
-            window.location.href = `../views/editQuiz.html/?quiz=${quiz.id}`
-        })
-        container.append(quizView);
+       
+         container.append(quizView);
     })
 }
 
-
+// headers for fetch
 let myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 myHeaders.append("Authorization", token);
+
 
 let requestOptions = {
 method: 'GET',
 headers: myHeaders,
 redirect: 'follow'
 };
+//fetching quizzes
 fetch(`https://agile-tundra-39359.herokuapp.com/api/v1/user/${userId}/quizzes`, requestOptions)
 .then((response) => {
     console.log(response.status);
@@ -48,3 +60,24 @@ fetch(`https://agile-tundra-39359.herokuapp.com/api/v1/user/${userId}/quizzes`, 
 })
 .catch(error => error.then(msg => alert(msg.message)));
 
+/**
+ * delete a quiz by id
+ */
+deleteQuiz = (id) => {
+    let requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        redirect: 'follow'
+        };
+        fetch(`https://agile-tundra-39359.herokuapp.com/api/v1/quiz/${id}`, requestOptions)
+        .then((response) => {
+            console.log(response.status);
+            if(response.status != 200) throw response.json();
+            window.location.href="../views/Profile.html"
+            return response.json()
+        })
+        .then((result) => {
+            console.log(result);
+        })
+        .catch(error => error.then(msg => alert(msg.message)));
+}
