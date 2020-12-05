@@ -1,5 +1,16 @@
 const host = "https://agile-tundra-39359.herokuapp.com/api/v1/"
-const quiz = null;
+let quiz = null;
+let myQuestions = null;
+
+let myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Authorization", token);
+
+let requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
 
 buildQuiz = ()=>{
   // variable to store the HTML output
@@ -83,7 +94,7 @@ populate = ()=>{
 
   })
   .then((result) => {
-    const myQuestions = result;
+    myQuestions = result;
     buildQuiz();
   })
   .catch(err => err.then(msg => alert(msg.message)));
@@ -144,4 +155,23 @@ populate = ()=>{
   }
   new_link(5);
 
-  
+// let myHeaders = new Headers();
+// myHeaders.append("Content-Type", "application/json");
+// myHeaders.append("Authorization", token);
+
+// let requestOptions = {
+// method: 'GET',
+// headers: myHeaders,
+// redirect: 'follow'
+// };
+// fetch(`https://agile-tundra-39359.herokuapp.com/api/v1/quizzes`, requestOptions)
+// .then((response) => {
+//     console.log(response.status);
+//     if(response.status != 200) throw response.json();
+//     return response.json()
+// })
+// .then((result) => {
+//     console.log(result);
+//     populateMyQuizzes(result);
+// })
+// .catch(error => error.then(msg => alert(msg.message)));

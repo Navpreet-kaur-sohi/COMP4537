@@ -90,3 +90,9 @@ launchCreate = () => {
 getUserQuiz = ()=>{
  window.location.href = "../views/myquiz.html"
 }
+
+allQuiz = ()=>{
+  window.location.href = "../views/QuizList.html"
+}
+
+

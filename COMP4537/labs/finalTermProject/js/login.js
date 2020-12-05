@@ -4,7 +4,6 @@ const signInButton = document.getElementById('signIn');
 //const signUpconfirm = $(docu$('#signupconfirm');
 // const signInconfirm = document.getElementById('signinconfirm');
 const container = document.getElementById('container');
-const host = "http://localhost:4000";
 
 signUpButton.addEventListener('click', () => {
 	container.classList.add("right-panel-active");
