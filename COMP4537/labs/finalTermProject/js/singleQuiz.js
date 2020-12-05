@@ -1,4 +1,10 @@
-
+function getToken() {
+  return "JWT" + " " + localStorage.getItem("token");
+}
+const token = getToken()
+const userId = localStorage.getItem("id");
+  
+  
   (function(){
     function buildQuiz(){
       // variable to store the HTML output
@@ -103,6 +109,8 @@
     ];
 
 
+
+
   
     // Kick things off
     buildQuiz();
@@ -126,4 +134,23 @@
   }
   new_link(5);
 
-  
+let myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Authorization", token);
+
+let requestOptions = {
+method: 'GET',
+headers: myHeaders,
+redirect: 'follow'
+};
+fetch(`https://agile-tundra-39359.herokuapp.com/api/v1/quizzes`, requestOptions)
+.then((response) => {
+    console.log(response.status);
+    if(response.status != 200) throw response.json();
+    return response.json()
+})
+.then((result) => {
+    console.log(result);
+    populateMyQuizzes(result);
+})
+.catch(error => error.then(msg => alert(msg.message)));

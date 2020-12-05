@@ -69,7 +69,7 @@ redirect: 'follow'
 };
 
 //Popualte Questions
-fetch(`http://localhost:4000/api/v1/quiz/${quizId}/questions`, requestOptions)
+fetch(`https://agile-tundra-39359.herokuapp.com/api/v1/quiz/${quizId}/questions`, requestOptions)
 .then((response) => {
     console.log(response.status);
     if(response.status != 200) throw response.json();
@@ -82,7 +82,7 @@ fetch(`http://localhost:4000/api/v1/quiz/${quizId}/questions`, requestOptions)
 .catch(error => error.then(msg => alert(msg.message)));
 
 //Populate Quiz info
-fetch(`http://localhost:4000/api/v1/quiz/${quizId}`, requestOptions)
+fetch(`https://agile-tundra-39359.herokuapp.com/api/v1/quiz/${quizId}`, requestOptions)
 .then((response) => {
     console.log(response.status);
     if(response.status != 200) throw response.json();
@@ -111,7 +111,7 @@ $("#submit").click(()=>{
     };
 
     //Popualte Questions
-    fetch(`http://localhost:4000/api/v1/quiz/${quizId}`, requestOptions)
+    fetch(`https://agile-tundra-39359.herokuapp.com/api/v1/quiz/${quizId}`, requestOptions)
     .then((response) => {
         console.log(response.status);
         if(response.status != 200) throw response.json();

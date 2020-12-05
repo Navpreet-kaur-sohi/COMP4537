@@ -17,8 +17,7 @@ let populateMyQuizzes = (quizzes)=>{
         <h5 class="card-title">${quiz.title}</h5>
         <h5 class="card-title">${quiz.description}</h5>
         <h5 class="card-title">Attempts: ${quiz.attempts}</h5>
-        <a href="#" class="btn btn-primary check" >View this quiz</a>
-        <a href="#" class="btn btn-primary check" onclick = "deleteQuiz(${quiz.id})" >delete</a>
+        <a href="#" class="btn btn-primary check" onclick="viewdetail()" >View this quiz</a>
         </div></div></div>`);
         // quizView.click(()=>{
         //     console.log("Quiz", quiz.id, "clicked!");
@@ -38,7 +37,7 @@ method: 'GET',
 headers: myHeaders,
 redirect: 'follow'
 };
-fetch(`https://agile-tundra-39359.herokuapp.com/api/v1/user/${userId}/quizzes`, requestOptions)
+fetch(`https://agile-tundra-39359.herokuapp.com/api/v1/quizzes`, requestOptions)
 .then((response) => {
     console.log(response.status);
     if(response.status != 200) throw response.json();
@@ -47,25 +46,10 @@ fetch(`https://agile-tundra-39359.herokuapp.com/api/v1/user/${userId}/quizzes`, 
 .then((result) => {
     console.log(result);
     populateMyQuizzes(result);
-    //Populate Quizzes
 })
 .catch(error => error.then(msg => alert(msg.message)));
 
-deleteQuiz = (id) => {
-    let requestOptions = {
-        method: 'DELETE',
-        headers: myHeaders,
-        redirect: 'follow'
-        };
-        fetch(`https://agile-tundra-39359.herokuapp.com/api/v1/quiz/${id}`, requestOptions)
-        .then((response) => {
-            console.log(response.status);
-            if(response.status != 200) throw response.json();
-            window.location.href="../views/Profile.html"
-            return response.json()
-        })
-        .then((result) => {
-            console.log(result);
-        })
-        .catch(error => error.then(msg => alert(msg.message)));
+
+viewdetail = () => {
+    window.location.href = "../views/singleQuiz.html"
 }
