@@ -1,4 +1,4 @@
-var ct = 1;
+let ct = 1;
 
 //getting token
 function getToken() {
@@ -10,16 +10,16 @@ function getToken() {
  * {Description : getting required fields from fe and then posting the quiz}
  */
 postQuiz = () => {
-  var qname = $("#name").val();
-  var qdesc =$("#desc").val();
-  var a1 = $("#a1").val();
-  var a2 = $("#a2").val();
-  var a3 = $("#a3").val();
-  var a4 = $("#a4").val();
+  let qname = $("#name").val();
+  let qdesc =$("#desc").val();
+  let a1 = $("#a1").val();
+  let a2 = $("#a2").val();
+  let a3 = $("#a3").val();
+  let a4 = $("#a4").val();
 
-  var affinity = {a1,a2,a3,a4};
-  var answers = {};
-  var question = []
+  let affinity = {a: a1, b: a2, c: a3, d: a4};
+  let answers = {};
+  let question = []
 
   //qsn
   $('.question').each(function() {
@@ -28,34 +28,39 @@ postQuiz = () => {
   });
 
   //options
-  var option1 = []
+  let option1 = []
   $('.option1').each(function() {
     
     option1.push($(this).val());
   });
 
-  var option2 = []
+  let option2 = []
   $('.option2').each(function() {
     
     option2.push($(this).val());
   });
 
-  var option3 = []
+  let option3 = []
   $('.option3').each(function() {
 
     option3.push($(this).val());
   });
 
-  var option4 = []
+  let option4 = []
   $('.option4').each(function() {
   
     option4.push($(this).val());
   });
 
   // crearing dic containing questions
-  var questions = {}
-  for(var i = 0;i<ct;i++){
-    answers = [option1[i],option2[i],option3[i],option4[i]]
+  let questions = {}
+  for(let i = 0;i<ct;i++){
+    answers = [
+      {text: option1[i], affinityId: "a"},
+      {text: option2[i], affinityId: "b"},
+      {text: option3[i], affinityId: "c"},
+      {text: option4[i], affinityId: "d"}
+    ];
     text = question[i]
     questions[i ] = {"answers":answers,"text":text}
   }
@@ -89,20 +94,20 @@ console.log(data)
 
 }
 
- var height = 1150;
+ let height = 1150;
  /**
   * adding new link
   * {description : this method is for adding a new question }
   */
-function new_link()
+new_link = () =>
         {
             ct++;
             height = height+500;
             console.log(ct)
-            var div1 = document.createElement('div');
+            let div1 = document.createElement('div');
             div1.id = ct;
             // link to delete extended form elements
-            var delLink = '<div style="text-align:right;margin-right:65px"><a href="javascript:delIt('+ ct +')">Del</a></div>';
+            let delLink = '<div style="text-align:right;margin-right:65px"><a href="javascript:delIt('+ ct +')">Del</a></div>';
             div1.innerHTML = document.getElementById('1').innerHTML + delLink;
             document.getElementById('qus_holder').appendChild(div1);
             console.log(height +"px");
@@ -113,10 +118,10 @@ function new_link()
   * adding new link
   * {description :  deleting the columns if accidentally entered}
   */        
-function delIt(eleId)
+delIt = (eleId)=>
         {
             d = document;
-            var ele = d.getElementById(eleId);
-            var parentEle = d.getElementById('qus_holder');
+            let ele = d.getElementById(eleId);
+            let parentEle = d.getElementById('qus_holder');
             parentEle.removeChild(ele);
         }

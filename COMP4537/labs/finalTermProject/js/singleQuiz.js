@@ -57,6 +57,25 @@ buildQuiz = ()=>{
   quizContainer.innerHTML = output.join('');
 }
 
+attemptQuiz = ()=>{
+  let ro = {
+    method: 'PUT',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+  fetch(host + "/quiz/" + quiz.id + "/attempt", ro)
+  .then((response) => {
+    if (response.status == 409) throw response.json()
+    return response.json()
+
+  })
+  .then((result) => {
+    console.log(result);
+    buildQuiz();
+  })
+  .catch(error => console.log(error));
+}
+
 showResults = ()=>{
 
   // gather answer containers from our quiz
@@ -85,8 +104,11 @@ showResults = ()=>{
       topText = affinities[affinityIds[i]];
     }
   }
-  alert(`You are: ${topText}`)
+  alert(`You are: ${topText}`);
+  attemptQuiz();
 }
+
+
 
 populate = ()=>{
   const submitButton = $('#submit');

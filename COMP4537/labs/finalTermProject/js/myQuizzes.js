@@ -28,10 +28,13 @@ let populateMyQuizzes = (quizzes)=>{
         <h5 class="card-title">${quiz.title}</h5>
         <h5 class="card-title">${quiz.description}</h5>
         <h5 class="card-title">Attempts: ${quiz.attempts}</h5>
-        <a href="#" class="btn btn-primary check" >View this quiz</a>
         </div></div></div>`);
-       
-         container.append(quizView);
+       let editButton = $('<a href="#" class="btn btn-primary check">Edit</a>').click(()=>{viewQuiz(quiz)});
+       let deleteButton = $('<a href="#" class="btn btn-primary check">Delete</a>').click(()=>{deleteQuiz(quiz.id)});
+
+        quizView.append(editButton).append(deleteButton);
+
+        container.append(quizView);
     })
 }
 
@@ -80,4 +83,9 @@ deleteQuiz = (id) => {
             console.log(result);
         })
         .catch(error => error.then(msg => alert(msg.message)));
+}
+
+viewQuiz = (quiz)=>{
+    localStorage.setItem("quiz", JSON.stringify(quiz));
+    window.location.href = "../views/editQuiz.html";
 }
